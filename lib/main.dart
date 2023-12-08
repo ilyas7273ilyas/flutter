@@ -1,8 +1,25 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:users_app/authentication/login_screen.dart';
 import 'package:users_app/authentication/signup_screen.dart';
 
-void main() {
+Future<void> main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: 'AIzaSyAbq6z0NE2E9CTVjeqSCAn5WGEYBLMNDOE',
+        appId: '1:436597238544:android:329041c5d7485483825395',
+        messagingSenderId: '436597238544',
+        projectId: 'vayu-ride-with-admin')
+  )
+  : await Firebase.initializeApp();
+  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+
   runApp(const MyApp());
 }
 
